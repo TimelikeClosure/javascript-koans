@@ -108,7 +108,18 @@ describe("About Applying What We Have Learnt", function() {
   /* UNCOMMENT FOR EXTRA CREDIT */
   it("should find the largest prime factor of a composite number", function () {
     var largestPrimeFactor = function (compositeNumber) { 
-      
+      var largestPrime = 1;
+      var compositeRoot = Math.sqrt(compositeNumber);
+      var testDivisor = 2;
+      while (testDivisor <= compositeRoot) {
+        if (!(compositeNumber % testDivisor)) {
+          largestPrime = testDivisor;
+          compositeNumber /= testDivisor;
+        } else {
+          testDivisor++;
+        }
+      }
+      return largestPrime;
     };
     
     expect(largestPrimeFactor(7777770)).toBe(37);
