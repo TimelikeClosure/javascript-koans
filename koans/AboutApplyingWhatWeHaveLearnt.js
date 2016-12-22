@@ -127,18 +127,20 @@ describe("About Applying What We Have Learnt", function() {
   
     
   it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
+    /**
+     * @function largestPalindrome
+     * @summary Where: product = a * b;
+     * Runs 6166 inner loop iterations
+     */
     var largestPalindrome = function () {
       var largest = 0;
-      var counter = 0;
-      for (var i = 999; i >= 100; i--){
-        for (var j = i; j >= 100; j--){
-          counter++;
-          var product = i * j;
+      for (var a = 999; a >= 100; a--){
+        for (var b = a; b >= 100; b--){
+          var product = a * b;
           if (product <= largest) {
-            if (i !== j) {
+            if (a !== b) {
               break;
             }
-            console.log(counter);
             return largest;
           }
           var productStr = product.toString();
@@ -149,8 +151,40 @@ describe("About Applying What We Have Learnt", function() {
         }
       }
     };
+    /**
+     * @function largestPalindromeMathFriendly
+     * @summary Where:
+     *  product = a * b; a >= b;
+     *  a = 1000 - x; b = 1000 - y;
+     *  (x + 1) * (y + 1) = 11 * (9 * m + 1);
+     *  m = 10 + k + i;
+     *  and the palindrome takes the form ijkkji where i, j, k are digits;
+     * Runs 212 inner loop iterations
+     */
+    var largestPalindromeMathFriendly = function () {
+      var largest = 0;
+      for (var i = 9; i > 0; i--){
+        for (var m = 19 - i; m > 9 - i; m--){
+          for (var x = 1; x <= y(x, m) && y(x, m) > 0; x++){
+            if (!(y(x, m) % 1)) {
+              var product = (1000 - x) * (1000 - y(x, m));
+              if (product > largest && product.toString().slice(0, 3) === product.toString().slice(3, 6).split("").reverse().join("")) {
+                largest = product;
+              }
+            }
+          }
+        }
+        if (largest) {
+          return largest;
+        }
+      }
+      function y(x, m) {
+        return ((11*(9 * m + 1))/(x + 1)) - 1;
+      }
+    };
     
     expect(largestPalindrome()).toBe(906609);
+    expect(largestPalindromeMathFriendly()).toBe(906609);
   });
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
