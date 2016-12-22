@@ -229,7 +229,20 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the 10001st prime", function () {
-    var primeByIndex = function (index) { };
+    var primeByIndex = function (primeIndex) { // Sieve of Sundaram
+      var primes = [2];
+      var numbers = Array(Math.ceil(Math.pow(primeIndex, 1.5))).fill(true);
+      for (var i = 0, len = numbers.length; i < len; i++){
+        if (numbers[i]) {
+          var multiple = 2 * i + 3;
+          primes.push(multiple);
+          for (var j = i + multiple; j < len; j += multiple){
+            numbers[j] = false;
+          }
+        }
+      }
+      return primes[primeIndex - 1];
+    };
 
     expect(primeByIndex(10001)).toBe(104743);
   });
