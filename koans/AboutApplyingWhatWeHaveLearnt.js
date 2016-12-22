@@ -141,7 +141,9 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the difference between the sum of the squares and the square of the sums", function () {
+    var sumSquaresSquareSumsDiff = function (numList) { };
 
+    expect(sumSquaresSquareSumsDiff([1,2,3,4,5,6,7])).toBe(-644);
   });
 
   it("should find the 10001st prime", function () {
