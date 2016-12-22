@@ -127,7 +127,28 @@ describe("About Applying What We Have Learnt", function() {
   
     
   it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
-    var largestPalindrome = function () { };
+    var largestPalindrome = function () {
+      var largest = 0;
+      var counter = 0;
+      for (var i = 999; i >= 100; i--){
+        for (var j = i; j >= 100; j--){
+          counter++;
+          var product = i * j;
+          if (product <= largest) {
+            if (i !== j) {
+              break;
+            }
+            console.log(counter);
+            return largest;
+          }
+          var productStr = product.toString();
+          if (productStr.slice(0, 3) === productStr.slice(3, 6).split("").reverse().join("")) {
+            largest = product;
+            break;
+          }
+        }
+      }
+    };
     
     expect(largestPalindrome()).toBe(906609);
   });
