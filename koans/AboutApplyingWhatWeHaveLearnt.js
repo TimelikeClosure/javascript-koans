@@ -215,7 +215,15 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the difference between the sum of the squares and the square of the sums", function () {
-    var sumSquaresSquareSumsDiff = function (numList) { };
+    var sumSquaresSquareSumsDiff = function (numList) {
+      var sum = function (subTotal, next) {
+        return subTotal + next;
+      }
+      var square = function (num) {
+        return num * num;
+      };
+      return numList.map(square).reduce(sum, 0) - square(numList.reduce(sum, 0));
+    };
 
     expect(sumSquaresSquareSumsDiff([1,2,3,4,5,6,7])).toBe(-644);
   });
