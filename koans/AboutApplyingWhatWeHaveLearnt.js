@@ -147,7 +147,9 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the 10001st prime", function () {
+    var primeByIndex = function (index) { };
 
+    expect(primeByIndex(10001)).toBe(104743);
   });
   
 });
