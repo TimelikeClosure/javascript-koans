@@ -189,8 +189,27 @@ describe("About Applying What We Have Learnt", function() {
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
     var leastCommonSeriesMultiple = function (seriesEnd) {
-      
+      if (seriesEnd === 1) {
+        return 1;
+      } else {
+        return lcm(seriesEnd, leastCommonSeriesMultiple(seriesEnd - 1));
+      }
     }
+
+    var lcm = function (num1, num2) {
+      var small = Math.min(num1, num2);
+      var large = Math.max(num1, num2);
+      var divisor = 2;
+      while (divisor <= small) {
+        if ((small % divisor) || (large % divisor)) {
+          divisor++;
+        } else {
+          small /= divisor;
+          large /= divisor;
+        }
+      }
+      return Math.min(num1, num2) * large;
+    };
 
     expect(leastCommonSeriesMultiple(20)).toBe(232792560);
   });
